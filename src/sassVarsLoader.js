@@ -46,6 +46,10 @@ module.exports = async function(content) {
         vars.push({ file, string: readSassFiles([file]) })
       }
     }
+    
+    if (options.varsFunc) {
+      vars.push({ object: await options.varsFunc() })
+    }
 
     // Vars from Webpack config
     if (options.vars) {
